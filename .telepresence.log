@@ -1,0 +1,213 @@
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'run', '--restart=Always', '--limits=memory=256Mi', '--requests=memory=64Mi', 'example', '--image=datawire/telepresence-k8s:0.52', '--labels=telepresence=8c7c9a33-d42a-410c-9523-b1e7da11e369'],)... ran!
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'get', 'deployment', '-o', 'json', '--export', '--selector=telepresence=8c7c9a33-d42a-410c-9523-b1e7da11e369'],)... ran!
+Expected metadata for pods: {'creationTimestamp': None, 'labels': {'telepresence': '8c7c9a33-d42a-410c-9523-b1e7da11e369'}}
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'get', 'pod', '-o', 'json', '--export'],)... ran!
+Checking {'pod-template-hash': '2506827597', 'telepresence': '7222c856-b1c2-448d-bb10-4a97aa756d0a'} (phase Running)...
+Labels don't match.
+Checking {'pod-template-hash': '3357353811', 'telepresence': '8c7c9a33-d42a-410c-9523-b1e7da11e369'} (phase Pending)...
+Looks like we've found our pod!
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'get', 'pod', 'example-3357353811-rj0jw', '-o', 'json'],)... ran!
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'get', 'pod', 'example-3357353811-rj0jw', '-o', 'json'],)... ran!
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'get', 'pod', 'example-3357353811-rj0jw', '-o', 'json'],)... ran!
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'get', 'pod', 'example-3357353811-rj0jw', '-o', 'json'],)... ran!
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'get', 'pod', 'example-3357353811-rj0jw', '-o', 'json'],)... ran!
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'port-forward', 'example-3357353811-rj0jw', '42927:8022'],)...Running: (['ip', 'addr', 'show', 'dev', 'docker0'],)... ran!
+Running: (['socat', 'TCP4-LISTEN:42927,bind=172.17.0.1,reuseaddr,fork', 'TCP4:127.0.0.1:42927'],)...Running: (['ssh', '-F', '/dev/null', '-vv', '-oStrictHostKeyChecking=no', '-oUserKnownHostsFile=/dev/null', '-p', '42927', 'telepresence@localhost', '/bin/true'],)... OpenSSH_7.5p1, OpenSSL 1.1.0f  25 May 2017
+debug1: Reading configuration data /dev/null
+debug2: resolving "localhost" port 42927
+debug2: ssh_connect_direct: needpriv 0
+debug1: Connecting to localhost [::1] port 42927.
+debug1: connect to address ::1 port 42927: Connection refused
+debug1: Connecting to localhost [127.0.0.1] port 42927.
+debug1: connect to address 127.0.0.1 port 42927: Connection refused
+ssh: connect to host localhost port 42927: Connection refused
+Forwarding from 127.0.0.1:42927 -> 8022
+Forwarding from [::1]:42927 -> 8022
+Running: (['ssh', '-F', '/dev/null', '-vv', '-oStrictHostKeyChecking=no', '-oUserKnownHostsFile=/dev/null', '-p', '42927', 'telepresence@localhost', '/bin/true'],)... OpenSSH_7.5p1, OpenSSL 1.1.0f  25 May 2017
+debug1: Reading configuration data /dev/null
+debug2: resolving "localhost" port 42927
+debug2: ssh_connect_direct: needpriv 0
+debug1: Connecting to localhost [::1] port 42927.
+debug1: Connection established.
+Handling connection for 42927
+debug1: identity file /home/hkos/.ssh/id_rsa type 1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/hkos/.ssh/id_rsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/hkos/.ssh/id_dsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/hkos/.ssh/id_dsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/hkos/.ssh/id_ecdsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/hkos/.ssh/id_ecdsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/hkos/.ssh/id_ed25519 type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/hkos/.ssh/id_ed25519-cert type -1
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_7.5
+debug1: Remote protocol version 2.0, remote software version OpenSSH_7.4
+debug1: match: OpenSSH_7.4 pat OpenSSH* compat 0x04000000
+debug2: fd 3 setting O_NONBLOCK
+debug1: Authenticating to localhost:42927 as 'telepresence'
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug2: local client KEXINIT proposal
+debug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1,ext-info-c
+debug2: host key algorithms: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+debug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc
+debug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc
+debug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: compression ctos: none,zlib@openssh.com,zlib
+debug2: compression stoc: none,zlib@openssh.com,zlib
+debug2: languages ctos: 
+debug2: languages stoc: 
+debug2: first_kex_follows 0 
+debug2: reserved 0 
+debug2: peer server KEXINIT proposal
+debug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1
+debug2: host key algorithms: ssh-rsa,rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+debug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+debug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+debug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: compression ctos: none,zlib@openssh.com
+debug2: compression stoc: none,zlib@openssh.com
+debug2: languages ctos: 
+debug2: languages stoc: 
+debug2: first_kex_follows 0 
+debug2: reserved 0 
+debug1: kex: algorithm: curve25519-sha256
+debug1: kex: host key algorithm: ecdsa-sha2-nistp256
+debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug1: Server host key: ecdsa-sha2-nistp256 SHA256:r2zzQ98n6e/00akksHN4I2enCriTJQVLA1DDQyvNzpA
+debug1: checking without port identifier
+Warning: Permanently added '[localhost]:42927' (ECDSA) to the list of known hosts.
+debug2: set_newkeys: mode 1
+debug1: rekey after 134217728 blocks
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: SSH2_MSG_NEWKEYS received
+debug2: set_newkeys: mode 0
+debug1: rekey after 134217728 blocks
+debug2: key: /home/hkos/.ssh/id_rsa (0x563f26e4a8e0), agent
+debug2: key: /home/hkos/.ssh/id_dsa ((nil))
+debug2: key: /home/hkos/.ssh/id_ecdsa ((nil))
+debug2: key: /home/hkos/.ssh/id_ed25519 ((nil))
+debug1: SSH2_MSG_EXT_INFO received
+debug1: kex_input_ext_info: server-sig-algs=<ssh-ed25519,ssh-rsa,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521>
+debug2: service_accept: ssh-userauth
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentication succeeded (none).
+Authenticated to localhost ([::1]:42927).
+debug2: fd 5 setting O_NONBLOCK
+debug2: fd 6 setting O_NONBLOCK
+debug1: channel 0: new [client-session]
+debug2: channel 0: send open
+debug1: Requesting no-more-sessions@openssh.com
+debug1: Entering interactive session.
+debug1: pledge: network
+debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+debug2: callback start
+debug2: fd 3 setting TCP_NODELAY
+debug2: client_session2_setup: id 0
+debug1: Sending command: /bin/true
+debug2: channel 0: request exec confirm 1
+debug2: callback done
+debug2: channel 0: open confirm rwindow 0 rmax 32768
+debug2: channel 0: rcvd adjust 2097152
+debug2: channel_input_status_confirm: type 99 id 0
+debug2: exec request accepted on channel 0
+debug2: channel 0: read<=0 rfd 5 len 0
+debug2: channel 0: read failed
+debug2: channel 0: close_read
+debug2: channel 0: input open -> drain
+debug2: channel 0: ibuf empty
+debug2: channel 0: send eof
+debug2: channel 0: input drain -> closed
+debug1: client_input_channel_req: channel 0 rtype exit-status reply 0
+debug1: client_input_channel_req: channel 0 rtype eow@openssh.com reply 0
+debug2: channel 0: rcvd eow
+debug2: channel 0: rcvd eof
+debug2: channel 0: output open -> drain
+debug2: channel 0: obuf empty
+debug2: channel 0: close_write
+debug2: channel 0: output drain -> closed
+debug2: channel 0: rcvd close
+debug2: channel 0: almost dead
+debug2: channel 0: gc: notify user
+debug2: channel 0: gc: user detached
+debug2: channel 0: send close
+debug2: channel 0: is dead
+debug2: channel 0: garbage collecting
+debug1: channel 0: free: client-session, nchannels 1
+debug1: fd 0 clearing O_NONBLOCK
+debug1: fd 1 clearing O_NONBLOCK
+Transferred: sent 1776, received 2628 bytes, in 0.1 seconds
+Bytes per second: sent 30572.8, received 45239.4
+debug1: Exit status 0
+ ran!
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'exec', 'example-3357353811-rj0jw', '--container', 'example', 'env'],)... ran!
+Running: (['sudo', 'sshfs', '-p', '42927', '-F', '/dev/null', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', '-o', 'allow_other', 'telepresence@localhost:/', '/tmp/tmpdb36l_if'],)... Handling connection for 42927
+ ran!
+Running: (['kubectl', '--v=4', '--context', 'default-system', '--namespace', 'default', 'exec', '--container=example', 'example-3357353811-rj0jw', '--', 'python3', '-c', '\nimport socket, sys, json\n\nresult = []\nfor host in sys.argv[1:]:\n    result.append(socket.gethostbyname(host))\nsys.stdout.write(json.dumps(result))\nsys.stdout.flush()\n'],)... ran!
+Running: (['kubectl', 'get', 'nodes', '-o', 'json'],)... ran!
+Running: (['docker', 'run', '--rm', '--privileged', '--name=telepresence-1498685876-5406842-13060', 'datawire/telepresence-local:0.52', 'proxy', '{"port": 42927, "cidrs": ["10.244.0.0/24", "10.244.1.0/24", "192.168.0.0/16", "10.244.2.0/24"], "expose_ports": []}'],)...Running: (['docker', 'run', '--network=container:telepresence-1498685876-5406842-13060', '--rm', 'datawire/telepresence-local:0.52', 'wait'],)... [INFO  tini (1)] Spawned child process 'python3' with pid '7'
+[INFO  tini (1)] Spawned child process 'python3' with pid '6'
+Starting sshuttle proxy.
+firewall manager: Starting firewall with Python version 3.6.1
+firewall manager: ready method name nat.
+IPv6 enabled: False
+UDP enabled: False
+DNS enabled: True
+TCP redirector listening on ('127.0.0.1', 12300).
+DNS listening on ('127.0.0.1', 12300).
+Starting client with Python version 3.6.1
+c : connecting to server...
+Handling connection for 42927
+Warning: Permanently added '[172.17.0.1]:42927' (ECDSA) to the list of known hosts.
+Starting server with Python version 3.5.2
+ s: latency control setting = True
+ s: available routes:
+ s:   2/10.244.0.0/16
+ s:   2/10.244.1.0/24
+c : Connected.
+firewall manager: setting up.
+>> iptables -t nat -N sshuttle-12300
+>> iptables -t nat -F sshuttle-12300
+>> iptables -t nat -I OUTPUT 1 -j sshuttle-12300
+>> iptables -t nat -I PREROUTING 1 -j sshuttle-12300
+>> iptables -t nat -A sshuttle-12300 -j RETURN --dest 127.0.0.1/32 -p tcp
+>> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 10.244.0.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+>> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 10.244.1.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+>> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 10.244.2.0/24 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+>> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 192.168.0.0/16 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+>> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 10.1.0.1/32 -p udp --dport 53 --to-ports 12300 -m ttl ! --ttl 42
+>> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 192.168.1.1/32 -p udp --dport 53 --to-ports 12300 -m ttl ! --ttl 42
+c : DNS request from ('172.17.0.2', 36970) to None: 35 bytes
+c : DNS request from ('172.17.0.2', 1024) to None: 35 bytes
+[INFO  tini (1)] Main child exited normally (with status '100')
+Running: (['docker', 'run', '--help'],)... ran!
+Shutting down local process...
+Running: (['fusermount', '-z', '-u', '/tmp/tmpdb36l_if'],)... fusermount: entry for /tmp/tmpdb36l_if not found in /etc/mtab
+Connection to 172.17.0.1 closed by remote host.
+Running: (['docker', 'stop', '--time=1', 'telepresence-1498685876-5406842-13060'],)... >> iptables -t nat -D OUTPUT -j sshuttle-12300
+>> iptables -t nat -D PREROUTING -j sshuttle-12300
+>> iptables -t nat -F sshuttle-12300
+>> iptables -t nat -X sshuttle-12300
+firewall manager: Error trying to undo /etc/hosts changes.
+firewall manager: ---> Traceback (most recent call last):
+firewall manager: --->   File "/root/.pex/install/sshuttle-0.78.2.dev28+g7f0b1ea-py3-none-any.whl.bc35173ad7c64c2548ca61f634204dc4913773da/sshuttle-0.78.2.dev28+g7f0b1ea-py3-none-any.whl/sshuttle/firewall.py", line 274, in main
+firewall manager: --->     restore_etc_hosts(port_v6 or port_v4)
+firewall manager: --->   File "/root/.pex/install/sshuttle-0.78.2.dev28+g7f0b1ea-py3-none-any.whl.bc35173ad7c64c2548ca61f634204dc4913773da/sshuttle-0.78.2.dev28+g7f0b1ea-py3-none-any.whl/sshuttle/firewall.py", line 50, in restore_etc_hosts
+firewall manager: --->     rewrite_etc_hosts({}, port)
+firewall manager: --->   File "/root/.pex/install/sshuttle-0.78.2.dev28+g7f0b1ea-py3-none-any.whl.bc35173ad7c64c2548ca61f634204dc4913773da/sshuttle-0.78.2.dev28+g7f0b1ea-py3-none-any.whl/sshuttle/firewall.py", line 29, in rewrite_etc_hosts
+firewall manager: --->     os.link(HOSTSFILE, BAKFILE)
+firewall manager: ---> OSError: [Errno 18] Cross-device link: '/etc/hosts' -> '/etc/hosts.sbak'
+[INFO  tini (1)] Main child exited with signal (with signal 'Terminated')
+telepresence-1498685876-5406842-13060
+ ran!
