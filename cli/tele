@@ -44,7 +44,7 @@ TELEPRESENCE_REMOTE_IMAGE = "{}/telepresence-k8s:{}".format(
 TELEPRESENCE_LOCAL_IMAGE = "{}/telepresence-local:{}".format(
     REGISTRY, __version__
 )
-
+print(TELEPRESENCE_LOCAL_IMAGE)
 # IP that shouldn't be in use on Internet, *or* local networks:
 MAC_LOOPBACK_IP = "198.18.0.254"
 
@@ -763,38 +763,6 @@ AllowOutboundLocalhost 1
 TorPort {}
 """
 
-
-def sip_workaround(existing_paths, unsupported_tools_path):
-    """
-    Workaround System Integrity Protection.
-
-    Newer OS X don't allow injecting libraries into binaries in /bin, /sbin and
-    /usr. We therefore make a copy of them and modify $PATH to point at their
-    new location. It's only ~100MB so this should be pretty fast!
-
-    :param existing_paths: Current $PATH.
-    :param unsupported_tools_path: Path where we have custom versions of ping
-        etc. Needs to be first in list so that we override system versions.
-    """
-    protected = {"/bin", "/sbin", "/usr/sbin", "/usr/bin"}
-    # Remove protected paths from $PATH:
-    paths = [p for p in existing_paths.split(":") if p not in protected]
-    # Add temp dir
-    bin_dir = mkdtemp()
-    paths.insert(0, bin_dir)
-    atexit.register(rmtree, bin_dir)
-    for directory in protected:
-        for file in os.listdir(directory):
-            try:
-                copy(os.path.join(directory, file), bin_dir)
-            except IOError:
-                continue
-            os.chmod(os.path.join(bin_dir, file), 0o775)
-    paths = [unsupported_tools_path] + paths
-    # Return new $PATH
-    return ":".join(paths)
-
-
 def wait_for_exit(runner, main_process, processes):
     """Given Popens, wait for one of them to die."""
     while True:
@@ -1028,8 +996,7 @@ def run_docker_command(
         "expose_ports":
         args.expose,
     }
-    if sys.platform == "darwin":
-        config["ip"] = MAC_LOOPBACK_IP
+    print(config)
     # Image already has tini init so doesn't need --init option:
     subprocesses.append(
         runner.popen(
@@ -1067,10 +1034,6 @@ def run_docker_command(
                 continue
             else:
                 raise
-        else:
-            raise RuntimeError(
-                "Waiting container exited prematurely. File a bug, please!"
-            )
 
     # Start the container specified by the user:
     container_name = random_name()
@@ -1127,17 +1090,10 @@ def main():
 
     prelim_command = "kubectl"
 
-    try:
-        args.context = str(
-            check_output([prelim_command, "config", "current-context"],
-                         stderr=STDOUT), "utf-8"
-        ).strip()
-    except CalledProcessError:
-        raise SystemExit(
-            "No current-context set. "
-            "Please use the --context option to explicitly set the "
-            "context."
-        )
+    args.context = str(
+        check_output([prelim_command, "config", "current-context"],
+                     stderr=STDOUT), "utf-8"
+    ).strip()
 
     # Figure out explicit namespace if its not specified, and the server
     # address (we use the server address to determine for good whether we
