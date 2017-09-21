@@ -276,9 +276,7 @@ def get_env_variables(runner, remote_info, context):
     return socks_result
 
 
-def get_deployment_json(
-    runner, deployment_name, context, namespace, deployment_type, run_id=None
-):
+def get_deployment_json(runner, deployment_name, context, namespace, deployment_type, run_id=None):
     """Get the decoded JSON for a deployment.
 
     If this is a Deployment we created, the run_id is also passed in - this is
@@ -321,9 +319,7 @@ def get_deployment_json(
         )
 
 
-def get_remote_info(
-    runner, deployment_name, context, namespace, deployment_type, run_id=None
-):
+def get_remote_info(runner, deployment_name, context, namespace, deployment_type, run_id=None):
     """
     Given the deployment name, return a RemoteInfo object.
 
@@ -957,9 +953,7 @@ def make_docker_kill(runner, name):
     return kill
 
 
-def run_docker_command(
-    runner, remote_info, args, remote_env, subprocesses, ssh
-):
+def run_docker_command(runner, remote_info, args, remote_env, subprocesses, ssh):
     """
     --docker-run support.
 

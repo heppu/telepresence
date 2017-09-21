@@ -215,7 +215,7 @@ Wait:
 			fmt.Println("Could not close socat:", err)
 			return
 		}
-		fmt.Println("socat closed closed")
+		fmt.Println("socat closed")
 	}()
 
 	if out, err = exec.Command("kubectl", "exec", pod.Items[0].Metadata.Name, "env").Output(); err != nil {
@@ -223,4 +223,5 @@ Wait:
 		return
 	}
 	env := out
+	fmt.Println(string(env))
 }
